@@ -20,7 +20,7 @@ import java.util.Map;
 public class PostService {
     private final PostRepository postRepository;
 //    private final UserRepository userRepository;
-//    private final CommentService commentService;
+    private final CommentService commentService;
 
 
     public Map<String,Object> createPost(PostRequestDto postRequestDto,Long userId) {
@@ -46,8 +46,8 @@ public class PostService {
         getPostComment.put("content",post.getContents());
         getPostComment.put("username",post.getName());
         getPostComment.put("modifiedAt",post.getModifiedAt());
-//        List<Comment>comment=commentService.getAllComment(post);
-//        getPostComment.put("comments",comment);
+        List<Comment>comment=commentService.getAllComment(post);
+        getPostComment.put("comments",comment);
         return getPostComment;
     }
 

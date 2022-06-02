@@ -31,30 +31,30 @@ public class CommentService {
 
         return commentRepository.save(comment);
     }
-//
-//    @Transactional
-//    public Comment updateComment(Long id, CommentRequestDto commentRequestDto) {
-//
-//        Comment comment= commentRepository.findById(id).orElseThrow(
-//                () -> new NullPointerException("아이디가 존재하지 않습니다.")
-//        );
-//            comment.update(commentRequestDto);
-//            return comment;
-//    }
-//
-//    public void deleteComment(Long id) {
-//        Post post=postRepository.findById(id).orElseThrow(null);
-//        commentRepository.deleteById(id);
-//    }
-//
-//    //특정 포스트 댓글 모두 보기
-//    public List<Comment>getAllComment(Post post)
-//    {
-//        return commentRepository.findAllByPostOrderByModifiedDtDesc(post);
-//    }
-//    @Transactional
-//    public void deletePostComment(Long id){
-//        Post post=postRepository.findById(id).orElseThrow(null);
-//        commentRepository.deleteByPost(post);
-//    }
+
+    @Transactional
+    public Comment updateComment(Long id, CommentRequestDto commentRequestDto) {
+
+        Comment comment= commentRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("아이디가 존재하지 않습니다.")
+        );
+            comment.update(commentRequestDto);
+            return comment;
+    }
+
+    public void deleteComment(Long id) {
+        Post post=postRepository.findById(id).orElseThrow(null);
+        commentRepository.deleteById(id);
+    }
+
+    //특정 포스트 댓글 모두 보기
+    public List<Comment>getAllComment(Post post)
+    {
+        return commentRepository.findAllByPostOrderByModifiedAtDesc(post);
+    }
+    @Transactional
+    public void deletePostComment(Long id){
+        Post post=postRepository.findById(id).orElseThrow(null);
+        commentRepository.deleteByPost(post);
+    }
 }
